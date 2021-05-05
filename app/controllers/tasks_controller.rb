@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user! , except: :index
 
   def index
     @tasks = Task.all
@@ -6,6 +7,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    
     @task = Task.new(task_params)
     if @task.save || @task.present?
       redirect_to root_path
@@ -26,7 +28,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:theme, :goal)
+    params.require(:task).permit(:theme, :goal).merge(user_id: current_user.id)
   end
 
 end
