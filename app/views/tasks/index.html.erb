@@ -1,2 +1,29 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<body>
+<h1>今のお悩みとその改善目標</h1>
+<%# タスク入力フォーム %>
+<p>お悩みと目標を入力してください</p>
+<%= form_with model: @task, local: true, class: "task-form" do |f| %>
+  <%= f.text_field :theme, placeholder: "お悩み(例:毎日運動したい)", class: "task-input" %>
+  <%= f.text_field :goal, placeholder: "目標(例:マラソン５km)", class: "task-input" %>
+  <%= f.submit "入力", class: "task-btn" %>
+<% end %>
+<%# //タスク入力フォーム %>
+
+<%# タスク表示部 %>
+<div class="task_index">
+お悩み/目標
+  <div class="task_theme">
+    <% if @tasks.present? %>
+      <% @tasks.each do |task| %>
+        <%= link_to "#{task.theme}", "#" %>
+        /
+        <%= task.goal %>
+        <%= link_to "行動", "#"%>
+        <%= link_to "削除", task_path(task.id), method: :delete %><br>
+      <% end %>
+    <% else %>
+      毎日運動したい / マラソン５km
+    <% end %>
+  </div>
+<%# //タスク表示部 %>
+</body>
