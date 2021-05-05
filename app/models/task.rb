@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
-  
-  validates :theme, presence: true
-  validates :goal,  presence: true
+
+  with_options presence: true do
+    validates :theme, :goal, :user_id
+  end
 end
