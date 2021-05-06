@@ -7,7 +7,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    
     @task = Task.new(task_params)
     if @task.save || @task.present?
       redirect_to root_path
