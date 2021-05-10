@@ -7,8 +7,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    if @task.save || @task.present?
+    @task = Task.create(task_params)
+    if @task.save
       redirect_to root_path
     else
       render :index

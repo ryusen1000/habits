@@ -7,8 +7,8 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
-    if @profile.save || @profile.present?
+    @profile = Profile.create(profile_params)
+    if @profile.save
       redirect_to index
     else
       render :index

@@ -12,11 +12,11 @@
 
 <body>
   <% if user_signed_in? %>
-    <h1>今のお悩みとその改善目標</h1>
+    <h1>HABITS</h1>
 <%# タスク入力フォーム %>
-    <p>お悩みと目標を入力してください</p>
+    <p>習慣にしたいことと目標を入力してください</p>
     <%= form_with model: @task, local: true, class: "task-form" do |f| %>
-      <%= f.text_field :theme, placeholder: "お悩み(例:毎日運動したい)", class: "task-input" %>
+      <%= f.text_field :theme, placeholder: "習慣(例:毎日運動したい)", class: "task-input" %>
       <%= f.text_field :goal, placeholder: "目標(例:マラソン５km)", class: "task-input" %>
       <%= f.submit "入力", class: "task-btn" %>
     <% end %>
@@ -24,14 +24,14 @@
 
 <%# タスク表示部 %>
     <div class="task_index">
-    お悩み/目標
+    習慣/目標
     <div class="task_theme">
       <% if @tasks.present? %>
         <% @tasks.each do |task| %>
-          <%= link_to "#{task.theme}", "#" %>
+          <%= task.theme %>
           /
           <%= task.goal %>
-          <%= link_to "行動", "#"%>
+          <%= link_to "行動", task_motions_path(task.id) %>
           <%= link_to "削除", task_path(task.id), method: :delete %><br>
         <% end %>
       <% else %>
