@@ -43,8 +43,12 @@ https://github.com/ryusen1000/habits
 習慣化チェック機能
 
 # ローカルでの動作方法
-
+アプリケーションをgitcloneした後、rails db:create でデータベースを作成してください。
+そして、rails db:migrate で、マイグレーションファイルからテーブル作成してください。
+rails sで起動した後に、ブラウザでlocalhost:3000にアクセスしてください。
+MySQL 5.6.51
 Ruby on Rails ver.6.0.0
+
 # テーブル設計
 
 ## USERSテーブル
