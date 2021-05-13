@@ -92,8 +92,8 @@ Ruby on Rails ver.6.0.0
 |------------|------------|--------------------------------|
 | act        | string     | null: false                    |
 | amount     | integer    | null: false                    |
-| if_then    | string     | null: false                    |
-| completion | string     | null: false                    |
+| if_act     | string     | null: false                    |
+| if_amount  | string     | null: false                    |
 | task       | references | null: false, foreign_key: true |
 
 ### Association

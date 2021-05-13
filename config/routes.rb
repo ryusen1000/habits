@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get "tasks/index"
   root to: "tasks#index" 
   resources :tasks, only: [:index, :create, :destroy] do
-    resources :motions
+    resources :motions do
+      resources :checkacts
+    end
   end
   resources :profiles, only: [:index, :create, :edit, :update]
 end

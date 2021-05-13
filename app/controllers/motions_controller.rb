@@ -5,6 +5,13 @@ class MotionsController < ApplicationController
   def index
     @motions = Motion.all
     @motion = Motion.new
+    # = Motion.where(task_id: @task.id)
+    @checkacts = Checkact.where(:motion_id == @motion.id)
+    @checkacts.each do |c|
+      @checkacts_data = Date.parse(c.created_at.to_s)
+    end
+    @check_days = check_days
+
   end
 
   def create
@@ -35,5 +42,11 @@ class MotionsController < ApplicationController
 
   def set_task
     @task = Task.find(params[:task_id])
+  end
+
+  def check_days
+    require "date"
+    today_data = Date.today
+    today_data == @checkacts_data
   end
 end
