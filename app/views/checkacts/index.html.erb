@@ -1,0 +1,7 @@
+本日の行動が完了したら<br>
+チェックボックスをオンにして<br>
+完了ボタンを押してください。
+<%= form_with model: @checkact, local: true, class: "checkact-form" do |f| %>
+    <%= f.check_box :completion, {class: "checkact_box"}, "1", "0" %>
+    <%= f.submit "完了", class: "checkact-btn" %>
+<% end %>
