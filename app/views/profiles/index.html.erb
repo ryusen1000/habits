@@ -1,28 +1,35 @@
-<h2>プロフィール</h2>
-<%= link_to "戻る", root_path %>
-<%# プロフィール入力フォーム %>
-<p>現在の年齢と体重を入力してください</p>
-<%= form_with model: @profile, local: true, class: "profile-form" do |f| %>
-  <%= f.text_field :age, placeholder: "年齢(例:35)", class: "profile-input" %>
-  <%= f.text_field :weight, placeholder: "体重(例:45)", class: "profile-input" %>
-  <%= f.submit "入力", class: "profile-btn" %>
-<% end %>
-<%# //プロフィール入力フォーム %>
-<%# プロフィール表示部 %>
-<div class="profile_index">
-  年齢 / 体重
-  <div class="profile_age">
-    <% if @profiles.present? %>
-      <% @profiles.each do |profile| %>
-        <%= profile.age %>歳
-        /
-        <%= profile.weight %>kg
-        <%= link_to "編集", edit_profile_path(profile.id) %>
-        <br>
+<body>
+  <%= render "shared/header" %>
+  <h1>HABITS</h1>
+  <h2>プロフィール</h2>
+  <%= link_to "戻る", root_path %>
+
+  <%# プロフィール入力フォーム %>
+  <p>現在の年齢と体重を入力してください</p>
+  <%= form_with model: @profile, local: true, class: "profile-form" do |f| %>
+    <%= f.text_field :age, placeholder: "年齢(例:35)", class: "profile-input" %>
+    <%= f.text_field :weight, placeholder: "体重(例:45)", class: "profile-input" %>
+    <%= f.submit "入力", class: "profile-btn" %>
+  <% end %>
+  <%# //プロフィール入力フォーム %>
+
+  <%# プロフィール表示部 %>
+  <div class="profile_index">
+    年齢 / 体重
+    <div class="profile_age">
+      <% if @profiles.present? %>
+        <% @profiles.each do |profile| %>
+          <%= profile.age %>歳
+          /
+          <%= profile.weight %>kg
+          <%= link_to "編集", edit_profile_path(profile.id) %>
+          <br>
+        <% end %>
+      <% else %>
+        例）30歳 / 45kg
       <% end %>
-    <% else %>
-      例）30歳 / 45kg
-    <% end %>
+    </div>
   </div>
-</div>
-<%# //プロフィール表示部 %>
+  <%# //プロフィール表示部 %>
+
+</body>

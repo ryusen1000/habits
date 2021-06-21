@@ -1,9 +1,13 @@
-<%= form_with model: @profile, local: true, class: "profile-form" do |f| %>
-  <%= @profile.age %>歳/<%= @profile.weight %>kg<br>
-  年齢
-  <%= f.text_field :age, placeholder: "年齢(例:35)", class: "profile-input" %>
-  体重
-  <%= f.text_field :weight, placeholder: "体重(例:45)", class: "profile-input" %>
-  <%= f.submit "入力", class: "profile-btn" %>
-<% end %>
-<%= link_to "戻る", profiles_path %>
+<body>
+  <%= render "shared/header" %>
+  <h1>HABITS</h1>
+  <%= form_with model: @profile, local: true, class: "profile-form" do |f| %>
+    <%= @profile.age %>歳/<%= @profile.weight %>kg<br>
+    年齢
+    <%= f.text_field :age, placeholder: "年齢(例:35)", class: "profile-input" %>
+    体重
+    <%= f.text_field :weight, placeholder: "体重(例:45)", class: "profile-input" %>
+    <%= f.submit "入力", class: "profile-btn" %>
+  <% end %>
+  <%= link_to "戻る", profiles_path %>
+</body>

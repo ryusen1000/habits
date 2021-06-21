@@ -1,37 +1,41 @@
-<h2>アクションプラン</h2>
-<%= link_to "戻る", root_path %><br>
-<%= @task[:theme] %>/<%= @task[:goal] %>
+<body>
+  <%= render "shared/header" %>
+  <h1>HABITS</h1>
+  <h2>アクションプラン</h2>
+  <%= link_to "戻る", root_path %><br>
+  <%= @task[:theme] %>/<%= @task[:goal] %>
 
 <%# アクション入力フォーム %>
-<%= form_with scope: :motion, local: true, class: "motion-form" do |f| %>
-<%= "アクションプランを入力してください" %><br>
-  <%= f.text_field :act, placeholder: "行動", class: "motion-input" %><br>
-  <%= f.number_field :amount, placeholder: "回数", class: "motion-input" %><br>
-<%= "サブアクションプランを入力してください" %><br>
-  <%= f.text_field :if_act, placeholder: "行動", class: "motion-input" %><br>
-  <%= f.number_field :if_amount, placeholder: "回数", class: "motion-input" %>
-  <%= f.submit "入力", class: "motion-btn" %>
-<% end %>
+  <%= form_with scope: :motion, local: true, class: "motion-form" do |f| %>
+    <%= "アクションプランを入力してください" %><br>
+    <%= f.text_field :act, placeholder: "行動", class: "motion-input" %><br>
+    <%= f.number_field :amount, placeholder: "回数", class: "motion-input" %><br>
+    <%= "サブアクションプランを入力してください" %><br>
+    <%= f.text_field :if_act, placeholder: "行動", class: "motion-input" %><br>
+    <%= f.number_field :if_amount, placeholder: "回数", class: "motion-input" %>
+    <%= f.submit "入力", class: "motion-btn" %>
+  <% end %>
 <%# //アクション入力フォーム %>
 
 <%# アクション表示部 %>
-<div class="action_index">
-  アクションプラン / 回数 // サブアクションプラン / 回数
-  <div class="action_age">
-    <% if @motions.present? %>
-
-      <% @motions.each do |motion| %>
-        <%if motion.task_id == @task.id %>
-          <%= motion.act %> / <%= motion.amount %> // <%= motion.if_act %> / <%= motion.if_amount %>
-              <% if @check_days != true %>
-                <%= link_to "行動完了", task_motion_checkacts_path(task_id:(@task.id), motion_id: motion.id) %>
-              <% end%>
-          <%= link_to "削除", task_motion_path(params[:task_id], id: motion.id), method: :delete %><br>
+  <div class="action_index">
+    アクションプラン / 回数 // サブアクションプラン / 回数
+    <div class="action_age">
+      <% if @motions.present? %>
+        <% @motions.each do |motion| %>
+          <%if motion.task_id == @task.id %>
+            <%= motion.act %> / <%= motion.amount %> // <%= motion.if_act %> / <%= motion.if_amount %>
+            <% if @check_days != true %>
+              <%= link_to "行動完了", task_motion_checkacts_path(task_id:(@task.id), motion_id: motion.id) %>
+            <% end%>
+            <%= link_to "削除", task_motion_path(params[:task_id], id: motion.id), method: :delete %><br>
+          <% end %>
         <% end %>
+      <% else %>
+        <%= "例）プッシュアップ / 30" %>
       <% end %>
-    <% else %>
-    <%= "例）プッシュアップ / 30" %>
-    <% end %>
+    </div>
   </div>
-</div>
 <%# //アクション表示部 %>
+
+</body>
