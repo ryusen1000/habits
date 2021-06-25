@@ -1,3 +1,9 @@
-.body {
+/* task/index */
+.task_text {
   align-items: center;
+  justify-content: center;
+}
+
+.task_index {
+  font-size: 20px;
 }
